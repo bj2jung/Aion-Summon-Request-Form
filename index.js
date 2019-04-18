@@ -49,7 +49,11 @@ function updateAddedAbilitiesList() {
   let temp = "";
 
   abilitiesAdded.forEach(element => {
-    temp += `<button>${element.abilityName}</button>`;
+    temp += `<button data-toggle="tooltip" data-placement="top" title="${
+      element.abilityDescription
+    } \n${element.abilityExceptions} \nclick to remove">${
+      element.abilityName
+    }</button>`;
   });
 
   abilitiesAddedList.innerHTML = temp;
@@ -71,6 +75,13 @@ eraseButton.addEventListener("click", e => {
   e.preventDefault();
   aionUser.value = "";
   aionName.value = "";
+  formTypeSelector.selectedIndex = 0;
+  qualityTypeSelector.selectedIndex = 0;
+  statsATK.selectedIndex = 0;
+  statsDEF.selectedIndex = 0;
+  statsAGL.selectedIndex = 0;
+  statsPER.selectedIndex = 0;
+  statsRES.selectedIndex = 0;
   abilityDescription.value = "";
   abilityName.value = "";
   abilityExceptions.value = "";
@@ -121,12 +132,7 @@ loadButton.addEventListener("click", e => {
   statsRES.selectedIndex = savedFields.statsRES;
   abilitiesAdded = savedFields.abilities;
 
-  let savedAbilityList = "";
-  savedFields.abilities.forEach(element => {
-    savedAbilityList += `<button>${element.abilityName}</button>`;
-  });
-
-  abilitiesAddedList.innerHTML = savedAbilityList;
+  updateAddedAbilitiesList();
 });
 
 const generateButton = document.querySelector("#generate");
@@ -134,11 +140,11 @@ generateButton.addEventListener("click", e => {
   e.preventDefault();
 
   let BSA =
-    (Number(statsATK.value) +
-      Number(statsDEF.value) +
-      Number(statsAGL.value) +
-      Number(statsPER.value) +
-      Number(statsRES.value)) /
+    (Number(statsATK.selectedIndex) +
+      Number(statsDEF.selectedIndex) +
+      Number(statsAGL.selectedIndex) +
+      Number(statsPER.selectedIndex) +
+      Number(statsRES.selectedIndex)) /
     5;
 
   let aionClass;
@@ -166,11 +172,11 @@ generateButton.addEventListener("click", e => {
     aionName: aionName.value,
     formType: formType.value,
     qualityType: qualityTypeExport,
-    statsATK: Number(statsATK.value),
-    statsDEF: Number(statsDEF.value),
-    statsAGL: Number(statsAGL.value),
-    statsPER: Number(statsPER.value),
-    statsRES: Number(statsRES.value),
+    statsATK: Number(statsATK.selectedIndex),
+    statsDEF: Number(statsDEF.selectedIndex),
+    statsAGL: Number(statsAGL.selectedIndex),
+    statsPER: Number(statsPER.selectedIndex),
+    statsRES: Number(statsRES.selectedIndex),
     abilities: abilitiesAdded,
     BSA: BSA,
     aionClass: aionClass
@@ -220,5 +226,5 @@ generateButton.addEventListener("click", e => {
     ]
   };
 
-  pdfMake.createPdf(docDefinition).open();
+  pdfMake.createPdf(docDefinition).open(); //TODO: download?
 });

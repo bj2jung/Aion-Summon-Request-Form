@@ -1,12 +1,9 @@
-const formTypeSelector = document.querySelector("#formType");
-const qualityTypeSelector = document.querySelector("#qualityType");
+const formType = document.querySelector("#formType");
+const qualityType = document.querySelector("#qualityType");
+const xetherianEvolutionary = document.querySelector("#xetherianEvolutionary");
 
-formTypeSelector.addEventListener("change", e => {
-  if (e.target.selectedIndex >= 4) {
-    qualityTypeSelector.setAttribute("disabled", true);
-  } else {
-    qualityTypeSelector.removeAttribute("disabled");
-  }
+formType.addEventListener("change", () => {
+  disableSelectors();
 });
 
 const addAbilityButton = document.querySelector("#addAbility");
@@ -45,6 +42,16 @@ addAbilityButton.addEventListener("click", e => {
   abilityExceptions.value = "";
 });
 
+function disableSelectors() {
+  if (formType.selectedIndex >= 4) {
+    qualityType.setAttribute("disabled", true);
+    xetherianEvolutionary.setAttribute("disabled", true);
+  } else {
+    qualityType.removeAttribute("disabled");
+    xetherianEvolutionary.removeAttribute("disabled");
+  }
+}
+
 function updateAddedAbilitiesList() {
   let temp = "";
 
@@ -75,13 +82,14 @@ eraseButton.addEventListener("click", e => {
   e.preventDefault();
   aionUser.value = "";
   aionName.value = "";
-  formTypeSelector.selectedIndex = 0;
-  qualityTypeSelector.selectedIndex = 0;
+  formType.selectedIndex = 0;
+  qualityType.selectedIndex = 0;
   statsATK.selectedIndex = 0;
   statsDEF.selectedIndex = 0;
   statsAGL.selectedIndex = 0;
   statsPER.selectedIndex = 0;
   statsRES.selectedIndex = 0;
+  xetherianEvolutionary.checked = false;
   abilityDescription.value = "";
   abilityName.value = "";
   abilityExceptions.value = "";
@@ -110,6 +118,7 @@ saveButton.addEventListener("click", e => {
     statsAGL: statsAGL.selectedIndex,
     statsPER: statsPER.selectedIndex,
     statsRES: statsRES.selectedIndex,
+    xetherianEvolutionary: xetherianEvolutionary.checked,
     abilities: abilitiesAdded
   };
 
@@ -130,9 +139,11 @@ loadButton.addEventListener("click", e => {
   statsAGL.selectedIndex = savedFields.statsAGL;
   statsPER.selectedIndex = savedFields.statsPER;
   statsRES.selectedIndex = savedFields.statsRES;
+  xetherianEvolutionary.checked = savedFields.xetherianEvolutionary;
   abilitiesAdded = savedFields.abilities;
 
   updateAddedAbilitiesList();
+  disableSelectors();
 });
 
 const generateButton = document.querySelector("#generate");
@@ -162,6 +173,7 @@ generateButton.addEventListener("click", e => {
   }
 
   let qualityTypeExport = qualityType.value;
+  let xetherianEvolutionaryExport = xetherianEvolutionary.checked ? "XE" : "";
 
   if (formType.selectedIndex >= 4) {
     qualityTypeExport = "Normal";
@@ -172,6 +184,7 @@ generateButton.addEventListener("click", e => {
     aionName: aionName.value,
     formType: formType.value,
     qualityType: qualityTypeExport,
+    xetherianEvolutionary: xetherianEvolutionaryExport,
     statsATK: Number(statsATK.selectedIndex),
     statsDEF: Number(statsDEF.selectedIndex),
     statsAGL: Number(statsAGL.selectedIndex),
@@ -202,6 +215,10 @@ generateButton.addEventListener("click", e => {
   let docDefinition = {
     content: [
       { text: `${exportData.aionUser}`, style: "header" },
+      {
+        text: `${exportData.aionName} ${exportData.xetherianEvolutionary}`,
+        style: "header"
+      },
       `${exportData.aionClass} Aion`,
       `${exportData.formType} ${exportData.qualityType} Aion`,
       {

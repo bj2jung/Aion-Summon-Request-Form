@@ -1,0 +1,83 @@
+body {
+  box-sizing: border-box;
+}
+
+.borderTop {
+  border-top: 1px lightgray solid;
+}
+
+.borderBottom {
+  border-bottom: 1px lightgray solid;
+}
+
+.formDescription {
+  font-size: 0.8em;
+}
+
+.abilitiesAdded {
+  line-height: 42px;
+}
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: 2fr 5fr 2fr;
+  grid-column-gap: 2em;
+  grid-template-rows: auto auto auto auto;
+  padding: 3em;
+}
+
+#instructions {
+  grid-row: 1/5;
+}
+
+.wide {
+  width: 12em;
+}
+
+.wider {
+  width: 24em;
+}
+
+.tall {
+  height: 5em;
+}
+
+.narrow {
+  width: 5em;
+}
+
+.row1 {
+  grid-row: 1/2;
+  padding-bottom: 1em;
+}
+
+.row2 {
+  grid-row: 2/3;
+  align-self: center;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+.row3 {
+  grid-row: 3/4;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+.row4 {
+  grid-row: 4/5;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+.col1 {
+  grid-column: 1/2;
+}
+
+.col2 {
+  grid-column: 2/3;
+}
+
+.col3 {
+  grid-column: 3/4;
+}

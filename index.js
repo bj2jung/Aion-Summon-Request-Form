@@ -56,11 +56,11 @@ function updateAddedAbilitiesList() {
   let temp = "";
 
   abilitiesAdded.forEach(element => {
-    temp += `<button data-toggle="tooltip" data-placement="top" title="${
+    temp += `<button class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="${
       element.abilityDescription
     } \n${element.abilityExceptions} \nclick to remove">${
       element.abilityName
-    }</button>`;
+    }</button> `;
   });
 
   abilitiesAddedList.innerHTML = temp;
@@ -214,31 +214,56 @@ generateButton.addEventListener("click", e => {
 
   let docDefinition = {
     content: [
-      { text: `${exportData.aionUser}`, style: "header" },
+      {
+        text: `${exportData.aionUser}`,
+        fontSize: 24,
+        bold: true
+      },
+      "\n",
       {
         text: `${exportData.aionName} ${exportData.xetherianEvolutionary}`,
-        style: "header"
+        italics: true
       },
-      `${exportData.aionClass} Aion`,
-      `${exportData.formType} ${exportData.qualityType} Aion`,
+      {
+        text: `${exportData.aionClass} Aion`,
+        italics: true
+      },
+      {
+        text: `${exportData.formType} ${exportData.qualityType} Aion`,
+        italics: true
+      },
+      "\n",
+      "\n",
       {
         style: "tableExample",
         table: {
+          widths: [75, 75, 75, 75, 75, 75],
           body: [
-            ["ATK", "DEF", "AGL", "PER", "RES", "BSA"],
             [
-              `${exportData.statsATK}`,
-              `${exportData.statsDEF}`,
-              `${exportData.statsAGL}`,
-              `${exportData.statsPER}`,
-              `${exportData.statsRES}`,
-              `${exportData.BSA}`
+              { text: "ATK", alignment: "center" },
+              { text: "DEF", alignment: "center" },
+              { text: "AGL", alignment: "center" },
+              { text: "PER", alignment: "center" },
+              { text: "RES", alignment: "center" },
+              { text: "BSA", alignment: "center" }
+            ],
+            [
+              { text: `${exportData.statsATK}`, alignment: "center" },
+              { text: `${exportData.statsDEF}`, alignment: "center" },
+              { text: `${exportData.statsAGL}`, alignment: "center" },
+              { text: `${exportData.statsPER}`, alignment: "center" },
+              { text: `${exportData.statsRES}`, alignment: "center" },
+              { text: `${exportData.BSA}`, alignment: "center" }
             ]
           ]
         }
       },
+      "\n",
+      "\n",
       abilitiesExport,
+      "\n",
       descriptionExport,
+      "\n",
       exceptionExport
     ]
   };

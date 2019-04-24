@@ -11,209 +11,204 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
-    <link href="main.css" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" />
   </head>
   <body>
-    <div id="instructions">
-      <h3>Instructions</h3>
-      <p>
-        Aions are the manifestations of the innermost true nature of the human
-        will, and can take a variety of different forms. With this generator,
-        you can create the details of an aion down to its individual combat
-        stats, skills, and more.
+    <div class="gridContainer">
+      <div id="instructions" class="col1">
+        <h3>Instructions</h3>
+        <p>
+          Aions are the manifestations of the innermost true nature of the human
+          will, and can take a variety of different forms. With this generator,
+          you can create the details of an aion down to its individual combat
+          stats, skills, and more.
+          <br />
+          <br />
+          To use this generator, fill out the required fields and press
+          "Generate". That's all there is to it.
+        </p>
+      </div>
+          <div class="borderBottom col2 row1">
+            <h3>Aion Generator</h3>
+            <div>
+              AION USER:
+              <input class="form-control wide" type="text" name="aionUser" id="aionUser" />
+              AION NAME:
+              <input class="form-control wide" type="text" name="aionName" id="aionName" />
+              FORM TYPE:
+              <br />
+              <select class="custom-select wide" id="formType" name="formType">
+                <option>Humanoid</option>
+                <option>Anthropomorphic</option>
+                <option>Inorganic</option>
+                <option>Aberration</option>
+                <option>Chromatic</option>
+                <option>Phenomenon</option>
+              </select>
+              <br />
+              QUALITY TYPE:
+              <br />
+              <select class="custom-select wide" id="qualityType" name="qualityType">
+                <option>Normal</option>
+                <option>Swarm</option>
+                <option>Sentient</option>
+                <option>Armor</option>
+                <option>Anchor</option>
+                <option>Remote</option>
+                <option>Shared</option>
+                <option>Evolutionary</option>
+              </select>
+              <input type="checkbox" id="xetherianEvolutionary">Xetherian Evolutionary</input>
+            </div>
+          </div>
+          <div class="col2 row2">
+            <div id="stats">
+              <span
+                class="stats"
+                data-toggle="tooltip"
+                data-placement="top"
+                title="(Attack) A measure of how much physical damage an aion summon can do in a single blow."
+              >
+                ATK:
+              </span>
+              <select class="custom-select narrow" id="statsATK">
+                <option>N/A</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+              </select>
+              <span
+                class="stats"
+                data-toggle="tooltip"
+                data-placement="top"
+                title="(Defense) A measure of how resilient or sturdy an aion summon is in terms of receiving physical damage."
+              >
+                DEF:
+              </span>
+              <select class="custom-select narrow" id="statsDEF">
+                <option>N/A</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+              </select>
+              <span
+                class="stats"
+                data-toggle="tooltip"
+                data-placement="top"
+                title="(Agility) A measure of how quick an aion summon is at its normal speed."
+              >
+                AGL:
+              </span>
+              <select class="custom-select narrow"  id="statsAGL">
+                <option>N/A</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+              </select>
+              <span
+                class="stats"
+                data-toggle="tooltip"
+                data-placement="top"
+                title="(Perception) A measure of an aion summon's awareness to its surroundings."
+              >
+                PER:
+              </span>
+              <select class="custom-select narrow"  id="statsPER">
+                <option>N/A</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+              </select>
+              <span
+                class="stats"
+                data-toggle="tooltip"
+                data-placement="top"
+                title="(Resistance) A measure of an aion summon's defenses to magic or other non-physical damage."
+              >
+                RES:
+              </span>
+              <select class="custom-select narrow" id="statsRES">
+                <option>N/A</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+              </select>
+            </div>
+          </div>
+          <div class="borderTop col2 row3">
+            <div id="abilities">
+              <div class="abilitiesAdded">
+                ABILITIES ADDED:
+                <span id="abilitiesAddedList"></span>
+              </div>
+              ABILITY NAME:
+              <input class="form-control wide" id="abilityName" type="text" />
+              DESCRIPTION:
+              <textarea class="form-control wider tall" id="abilityDescription" > </textarea>
+              EXCEPTIONS/CHECKS:
+              <textarea class="form-control wider tall" id="abilityExceptions"> </textarea>
+              <br/>
+              <button id="addAbility" class="btn btn-outline-secondary">Add Ability</button>
+            </div>
+          </div>
+          <div id="selectors" class="borderTop col2 row4">
+            <div>
+              <button id="generate" class="btn btn-outline-secondary" type="submit">Generate</button>
+              <button id="erase" class="btn btn-outline-secondary">Erase All Fields</button>
+              <button id="save" class="btn btn-outline-secondary">Save Fields</button>
+              <button id="load" class="btn btn-outline-secondary">Load Fields</button>
+            </div>
+          </div>
+  
+      <div class="row1 col3 formDescription">
         <br />
-        To use this generator, fill out the required fields and press
-        "Generate". That's all there is to it.
-      </p>
-    </div>
-    <div id="mainForm">
-      <form>
-        <p>
-          AION USER:
-          <br />
-          <input type="text" name="aionUser" id="aionUser" />
-          <br />
-          AION NAME:
-          <br />
-          <input type="text" name="aionName" id="aionName" />
-          <br />
-          FORM TYPE:
-          <br />
-          <select type="dropdown" id="formType" name="formType">
-            <option>Humanoid</option>
-            <option>Anthropomorphic</option>
-            <option>Inorganic</option>
-            <option>Aberration</option>
-            <option>Chromatic</option>
-            <option>Phenomenon</option>
-          </select>
-          <br />
-          QUALITY TYPE:
-          <br />
-          <select type="dropdown" id="qualityType" name="qualityType">
-            <option>Normal</option>
-            <option>Swarm</option>
-            <option>Sentient</option>
-            <option>Armor</option>
-            <option>Anchor</option>
-            <option>Remote</option>
-            <option>Shared</option>
-            <option>Evolutionary</option>
-          </select>
-          <input type="checkbox" id="xetherianEvolutionary">Xetherian Evolutionary</input>
-        </p>
-        <hr />
-        <p id="stats">
-          <span
-            class="stats"
-            data-toggle="tooltip"
-            data-placement="top"
-            title="(Attack) A measure of how much physical damage an aion summon can do in a single blow."
-          >
-            ATK:
-          </span>
-
-          <select type="dropdown" id="statsATK">
-            <option>N/A</option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-            <option>6</option>
-            <option>7</option>
-            <option>8</option>
-            <option>9</option>
-            <option>10</option>
-          </select>
-          <span
-            class="stats"
-            data-toggle="tooltip"
-            data-placement="top"
-            title="(Defense) A measure of how resilient or sturdy an aion summon is in terms of receiving physical damage."
-          >
-            DEF:
-          </span>
-          <select type="dropdown" id="statsDEF">
-            <option>N/A</option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-            <option>6</option>
-            <option>7</option>
-            <option>8</option>
-            <option>9</option>
-            <option>10</option>
-          </select>
-          <span
-            class="stats"
-            data-toggle="tooltip"
-            data-placement="top"
-            title="(Agility) A measure of how quick an aion summon is at its normal speed."
-          >
-            AGL:
-          </span>
-          <select type="dropdown" id="statsAGL">
-            <option>N/A</option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-            <option>6</option>
-            <option>7</option>
-            <option>8</option>
-            <option>9</option>
-            <option>10</option>
-          </select>
-          <span
-            class="stats"
-            data-toggle="tooltip"
-            data-placement="top"
-            title="(Perception) A measure of an aion summon's awareness to its surroundings."
-          >
-            PER:
-          </span>
-          <select type="dropdown" id="statsPER">
-            <option>N/A</option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-            <option>6</option>
-            <option>7</option>
-            <option>8</option>
-            <option>9</option>
-            <option>10</option>
-          </select>
-          <span
-            class="stats"
-            data-toggle="tooltip"
-            data-placement="top"
-            title="(Resistance) A measure of an aion summon's defenses to magic or other non-physical damage."
-          >
-            RES:
-          </span>
-          <select type="dropdown" id="statsRES">
-            <option>N/A</option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-            <option>6</option>
-            <option>7</option>
-            <option>8</option>
-            <option>9</option>
-            <option>10</option>
-          </select>
-        </p>
-        <hr />
-        <p>
-          ABILITIES ADDED:
-          <span id="abilitiesAddedList"></span>
-          <br />
-          ABILITY NAME:
-          <br />
-          <input id="abilityName" type="text" />
-          <br />
-          DESCRIPTION:
-          <br />
-          <input id="abilityDescription" type="text" />
-          <br />
-          EXCEPTIONS/CHECKS:
-          <br />
-          <input id="abilityExceptions" type="text" />
-          <button id="addAbility">Add Ability</button>
-          <br />
-        </p>
-        <hr />
-        <p>
-          <button id="generate" type="submit">Generate</button>
-          <button id="erase">Erase All Fields</button>
-          <button id="save">Save Fields</button>
-          <button id="load">Load Fields</button>
-        </p>
-      </form>
-    </div>
-
-    <div id="formDescription">
-      <div>
         FIELD 1
         <br />
         Name the individual that can summon the aion, the given name of the aion
         summon, the aion's form appearance, and the flavor quality of the aion.
       </div>
-      <div>
+      <div class="row2 col3 formDescription">
         FIELD 2
         <br />
         Stats of the aion summon in combat. This is NOT a measure of the aion's
         usefulness outside of combat.
       </div>
-      <div>
+      <div class="row3 col3 formDescription">
         FIELD 3
         <br />
         The name of the aion ability or abilities, the description of the given
@@ -222,7 +217,6 @@
       </div>
     </div>
     <script src="index.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.54/pdfmake.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.54/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.54/vfs_fonts.js"></script>
   </body>

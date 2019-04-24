@@ -28,39 +28,41 @@
           "Generate". That's all there is to it.
         </p>
       </div>
-          <div class="borderBottom col2 row1">
-            <h3>Aion Generator</h3>
-            <div>
+        <div class="borderBottom col2 row1">
+          <h3>Aion Generator</h3>
+          <div>
+            <form id="aionForm">
               AION USER:
               <input class="form-control wide" type="text" name="aionUser" id="aionUser" />
               AION NAME:
               <input class="form-control wide" type="text" name="aionName" id="aionName" />
-              FORM TYPE:
-              <br />
-              <select class="custom-select wide" id="formType" name="formType">
-                <option>Humanoid</option>
-                <option>Anthropomorphic</option>
-                <option>Inorganic</option>
-                <option>Aberration</option>
-                <option>Chromatic</option>
-                <option>Phenomenon</option>
-              </select>
-              <br />
-              QUALITY TYPE:
-              <br />
-              <select class="custom-select wide" id="qualityType" name="qualityType">
-                <option>Normal</option>
-                <option>Swarm</option>
-                <option>Sentient</option>
-                <option>Armor</option>
-                <option>Anchor</option>
-                <option>Remote</option>
-                <option>Shared</option>
-                <option>Evolutionary</option>
-              </select>
-              <input type="checkbox" id="xetherianEvolutionary">Xetherian Evolutionary</input>
-            </div>
+            </form>
+            FORM TYPE:
+            <br />
+            <select class="custom-select wide" id="formType" name="formType">
+              <option>Humanoid</option>
+              <option>Anthropomorphic</option>
+              <option>Inorganic</option>
+              <option>Aberration</option>
+              <option>Chromatic</option>
+              <option>Phenomenon</option>
+            </select>
+            <br />
+            QUALITY TYPE:
+            <br />
+            <select class="custom-select wide" id="qualityType" name="qualityType">
+              <option>Normal</option>
+              <option>Swarm</option>
+              <option>Sentient</option>
+              <option>Armor</option>
+              <option>Anchor</option>
+              <option>Remote</option>
+              <option>Shared</option>
+              <option>Evolutionary</option>
+            </select>
+            <input type="checkbox" id="xetherianEvolutionary">Xetherian Evolutionary</input>
           </div>
+        </div>
           <div class="col2 row2">
             <div id="stats">
               <span
@@ -176,19 +178,22 @@
                 ABILITIES ADDED:
                 <span id="abilitiesAddedList"></span>
               </div>
-              ABILITY NAME:
-              <input class="form-control wide" id="abilityName" type="text" />
-              DESCRIPTION:
-              <textarea class="form-control wider tall" id="abilityDescription" > </textarea>
-              EXCEPTIONS/CHECKS:
-              <textarea class="form-control wider tall" id="abilityExceptions"> </textarea>
-              <br/>
-              <button id="addAbility" class="btn btn-outline-secondary">Add Ability</button>
+              <form id="abilityForm">
+                ABILITY NAME:
+                <input class="form-control wide" id="abilityName" type="text" />
+                DESCRIPTION:
+                <textarea class="form-control wider tall" id="abilityDescription"></textarea>
+                EXCEPTIONS/CHECKS:
+                <textarea class="form-control wider tall" id="abilityExceptions"></textarea>
+                <br/>
+                <button id="addAbilityButton" class="btn btn-outline-secondary" type="submit" disabled="true">Add Ability</button>
+              </form>
             </div>
           </div>
+          
           <div id="selectors" class="borderTop col2 row4">
             <div>
-              <button id="generate" class="btn btn-outline-secondary" type="submit">Generate</button>
+              <button id="generate" class="btn btn-outline-secondary" type="submit" disabled="true">Generate</button>
               <button id="erase" class="btn btn-outline-secondary">Erase All Fields</button>
               <button id="save" class="btn btn-outline-secondary">Save Fields</button>
               <button id="load" class="btn btn-outline-secondary">Load Fields</button>

@@ -6,7 +6,7 @@ formType.addEventListener("change", () => {
   disableSelectors();
 });
 
-const addAbilityButton = document.querySelector("#addAbility");
+const addAbilityButton = document.querySelector("#addAbilityButton");
 const abilitiesAddedList = document.querySelector("#abilitiesAddedList");
 const abilityName = document.querySelector("#abilityName");
 const abilityDescription = document.querySelector("#abilityDescription");
@@ -22,24 +22,38 @@ class Ability {
 
 let abilitiesAdded = [];
 
-addAbilityButton.addEventListener("click", e => {
-  e.preventDefault();
+document.getElementById("abilityForm").addEventListener(
+  "submit",
+  e => {
+    e.preventDefault();
+    if (abilitiesAdded.length < 6) {
+      const abilityToAdd = new Ability(
+        abilityName.value,
+        abilityDescription.value,
+        abilityExceptions.value
+      );
 
-  if (abilitiesAdded.length < 6) {
-    const abilityToAdd = new Ability(
-      abilityName.value,
-      abilityDescription.value,
-      abilityExceptions.value
-    );
+      abilitiesAdded.push(abilityToAdd);
 
-    abilitiesAdded.push(abilityToAdd);
+      updateAddedAbilitiesList();
+      abilityName.value = "";
+      abilityDescription.value = "";
+      abilityExceptions.value = "";
+    }
+  },
+  false
+);
 
-    updateAddedAbilitiesList();
+document.getElementById("abilityForm").addEventListener("input", () => {
+  if (
+    abilityName.value &&
+    abilityDescription.value &&
+    abilityExceptions.value
+  ) {
+    addAbilityButton.removeAttribute("disabled");
+  } else {
+    addAbilityButton.setAttribute("disabled", true);
   }
-
-  abilityName.value = "";
-  abilityDescription.value = "";
-  abilityExceptions.value = "";
 });
 
 function disableSelectors() {
@@ -95,6 +109,9 @@ eraseButton.addEventListener("click", e => {
   abilityExceptions.value = "";
   abilitiesAddedList.innerHTML = "";
   abilitiesAdded = [];
+
+  disableSelectors();
+  disableGenerateButton();
 });
 
 const saveButton = document.querySelector("#save");
@@ -121,7 +138,6 @@ saveButton.addEventListener("click", e => {
     xetherianEvolutionary: xetherianEvolutionary.checked,
     abilities: abilitiesAdded
   };
-
   localStorage.setItem("user", JSON.stringify(obj));
 });
 
@@ -144,9 +160,23 @@ loadButton.addEventListener("click", e => {
 
   updateAddedAbilitiesList();
   disableSelectors();
+  disableGenerateButton();
 });
 
 const generateButton = document.querySelector("#generate");
+
+document.querySelector("#aionForm").addEventListener("input", () => {
+  disableGenerateButton();
+});
+
+function disableGenerateButton() {
+  if (aionUser.value && aionName.value) {
+    generateButton.removeAttribute("disabled");
+  } else {
+    generateButton.setAttribute("disabled", true);
+  }
+}
+
 generateButton.addEventListener("click", e => {
   e.preventDefault();
 

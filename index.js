@@ -234,12 +234,16 @@ generateButton.addEventListener("click", e => {
 
   let descriptionExport = "Description: ";
   for (let i in exportData.abilities) {
-    descriptionExport += `${exportData.abilities[i].abilityDescription} `;
+    descriptionExport += `[${Number(i) + 1}] ${
+      exportData.abilities[i].abilityDescription
+    } `;
   }
 
   let exceptionExport = "Exceptions/Checks: ";
   for (let i in exportData.abilities) {
-    exceptionExport += `${exportData.abilities[i].abilityExceptions} `;
+    exceptionExport += `[${Number(i) + 1}] ${
+      exportData.abilities[i].abilityExceptions
+    } `;
   }
 
   let docDefinition = {
@@ -299,4 +303,5 @@ generateButton.addEventListener("click", e => {
   };
 
   pdfMake.createPdf(docDefinition).open(); //TODO: download?
+  pdfMake.createPdf(docDefinition).download(); //TODO: download?
 });
